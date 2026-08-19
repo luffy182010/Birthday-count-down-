@@ -1,0 +1,531 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: "Cairo", sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            #ffdce8 0%,
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 90%,
+            #ffe4d5 0%,
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #fff9fb,
+            #ffedf3
+        );
+
+    color: #80596a;
+}
+
+
+/* =========================
+   Background Flowers
+========================= */
+
+.flower {
+    position: fixed;
+
+    pointer-events: none;
+    user-select: none;
+
+    opacity: 0.6;
+
+    animation:
+        float 5s ease-in-out infinite;
+}
+
+.flower-1 {
+    top: 5%;
+    right: 5%;
+
+    font-size: 70px;
+
+    transform: rotate(15deg);
+}
+
+.flower-2 {
+    bottom: 4%;
+    left: 5%;
+
+    font-size: 75px;
+
+    transform: rotate(-15deg);
+
+    animation-delay: 1s;
+}
+
+.flower-3 {
+    top: 18%;
+    left: 8%;
+
+    font-size: 42px;
+
+    opacity: 0.35;
+
+    animation-delay: 2s;
+}
+
+.flower-4 {
+    bottom: 18%;
+    right: 8%;
+
+    font-size: 45px;
+
+    opacity: 0.35;
+
+    animation-delay: 3s;
+}
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(15deg);
+    }
+
+    50% {
+        transform:
+            translateY(-12px)
+            rotate(18deg);
+    }
+}
+
+
+/* =========================
+   Main Card
+========================= */
+
+.card {
+    position: relative;
+
+    width: min(90%, 720px);
+
+    max-height: 90vh;
+
+    padding: 48px 30px;
+
+    text-align: center;
+
+    background:
+        rgba(255, 255, 255, 0.68);
+
+    border:
+        1px solid rgba(255, 255, 255, 0.9);
+
+    border-radius: 35px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(190, 117, 145, 0.16),
+
+        inset 0 0 35px
+        rgba(255, 255, 255, 0.5);
+
+    backdrop-filter: blur(18px);
+
+    animation: appear 1s ease;
+
+    overflow-y: auto;
+}
+
+
+@keyframes appear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =========================
+   Countdown
+========================= */
+
+.tiny {
+    color: #d38da5;
+
+    font-size: 14px;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+
+h1 {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color: #b96f89;
+
+    font-size:
+        clamp(38px, 8vw, 60px);
+
+    margin-bottom: 5px;
+}
+
+
+.subtitle {
+    color: #a47b89;
+
+    font-size: 15px;
+
+    margin-bottom: 35px;
+}
+
+
+.countdown {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+}
+
+
+.time {
+    padding: 20px 8px;
+
+    background:
+        rgba(255, 255, 255, 0.75);
+
+    border:
+        1px solid #f5d5df;
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(190, 117, 145, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+.time:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 12px 30px
+        rgba(190, 117, 145, 0.14);
+}
+
+
+.number {
+    display: block;
+
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color: #c77994;
+
+    font-size:
+        clamp(30px, 6vw, 48px);
+
+    font-weight: 600;
+}
+
+
+.label {
+    display: block;
+
+    margin-top: 4px;
+
+    color: #b28b98;
+
+    font-size: 13px;
+}
+
+
+.decoration {
+    margin-top: 30px;
+
+    color: #d696aa;
+
+    font-size: 19px;
+
+    letter-spacing: 6px;
+}
+
+
+/* =========================
+   Side Flowers
+========================= */
+
+.side-flower {
+    position: absolute;
+
+    font-size: 42px;
+
+    pointer-events: none;
+}
+
+
+.top-flower {
+    top: -18px;
+    right: 25px;
+
+    transform: rotate(12deg);
+}
+
+
+.bottom-flower {
+    bottom: -18px;
+    left: 25px;
+
+    transform: rotate(-12deg);
+}
+
+
+/* =========================
+   Birthday Page
+========================= */
+
+#birthday {
+    display: none;
+
+    animation:
+        birthdayAppear 1.5s ease;
+}
+
+
+@keyframes birthdayAppear {
+
+    from {
+        opacity: 0;
+
+        transform:
+            scale(0.85);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            scale(1);
+    }
+}
+
+
+.cake {
+    font-size: 60px;
+
+    margin-bottom: 12px;
+
+    animation:
+        cake 1.5s
+        ease-in-out
+        infinite;
+}
+
+
+@keyframes cake {
+
+    0%,
+    100% {
+        transform:
+            translateY(0);
+    }
+
+    50% {
+        transform:
+            translateY(-7px);
+    }
+}
+
+
+.birthday-title {
+    font-family:
+        "Playfair Display",
+        serif;
+
+    color: #c36f8d;
+
+    font-size:
+        clamp(40px, 9vw, 65px);
+
+    margin-bottom: 5px;
+}
+
+
+.birthday-name {
+    color: #d48aa2;
+
+    font-size: 26px;
+
+    font-weight: 600;
+
+    margin-bottom: 25px;
+}
+
+
+/* =========================
+   Birthday Message
+========================= */
+
+.message {
+    max-width: 570px;
+
+    margin: auto;
+
+    color: #88616f;
+
+    font-size: 15px;
+
+    line-height: 2;
+
+    background:
+        rgba(255, 255, 255, 0.52);
+
+    padding: 22px 25px;
+
+    border-radius: 22px;
+
+    border:
+        1px solid
+        rgba(255, 220, 230, 0.8);
+
+    box-shadow:
+        0 8px 25px
+        rgba(190, 117, 145, 0.06);
+}
+
+
+/* =========================
+   Floating Hearts
+========================= */
+
+.heart {
+    position: fixed;
+
+    color: #e5a1b5;
+
+    font-size: 20px;
+
+    pointer-events: none;
+
+    animation:
+        heartFloat
+        5s linear infinite;
+
+    opacity: 0;
+}
+
+
+@keyframes heartFloat {
+
+    0% {
+        transform:
+            translateY(20px);
+
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 0.7;
+    }
+
+    100% {
+        transform:
+            translateY(-100vh);
+
+        opacity: 0;
+    }
+}
+
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 15px;
+    }
+
+
+    .card {
+        width: 95%;
+
+        max-height: 92vh;
+
+        padding:
+            40px 17px;
+
+        border-radius: 28px;
+    }
+
+
+    .countdown {
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 11px;
+    }
+
+
+    .time {
+        padding:
+            17px 8px;
+    }
+
+
+    .flower-1,
+    .flower-2 {
+        font-size: 50px;
+    }
+
+
+    .message {
+        font-size: 14px;
+
+        line-height: 1.9;
+
+        padding: 18px;
+    }
+
+
+    .birthday-name {
+        font-size: 23px;
+    }
+      }
