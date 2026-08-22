@@ -1,36 +1,74 @@
 /* =========================================
-   Countdown
+   SETTINGS
 ========================================= */
 
 const targetDate = new Date("2026-08-23T00:00:00").getTime();
 
-const days = document.getElementById("days");
-const hours = document.getElementById("hours");
-const minutes = document.getElementById("minutes");
-const seconds = document.getElementById("seconds");
+const IMAGE_PATH = "./kayuki.png";
 
-const countdownPage = document.getElementById("countdownPage");
-const giftPage = document.getElementById("giftPage");
-const birthday = document.getElementById("birthday");
 
-const canvas = document.getElementById("scratchCanvas");
-const ctx = canvas.getContext("2d");
+/* =========================================
+   ELEMENTS
+========================================= */
 
-const clickHere = document.getElementById("clickHere");
+const countdownPage =
+    document.getElementById("countdownPage");
+
+const giftPage =
+    document.getElementById("giftPage");
+
+const birthday =
+    document.getElementById("birthday");
+
+const days =
+    document.getElementById("days");
+
+const hours =
+    document.getElementById("hours");
+
+const minutes =
+    document.getElementById("minutes");
+
+const seconds =
+    document.getElementById("seconds");
+
+const canvas =
+    document.getElementById("scratchCanvas");
+
+const clickHere =
+    document.getElementById("clickHere");
+
+const birthdayImage =
+    document.getElementById("birthdayImage");
+
+
+/* =========================================
+   VARIABLES
+========================================= */
 
 let countdownFinished = false;
+let scratchInitialized = false;
 let scratching = false;
 let scratchedEnough = false;
 let birthdayOpened = false;
 
+let lastX = null;
+let lastY = null;
+
 
 /* =========================================
-   Countdown
+   COUNTDOWN
 ========================================= */
 
 function updateCountdown() {
 
-    const difference = targetDate - Date.now();
+    const difference =
+        targetDate - Date.now();
+
+
+    /*
+        إذا انتهى الوقت
+    */
 
     if (difference <= 0) {
 
@@ -38,99 +76,122 @@ function updateCountdown() {
 
             countdownFinished = true;
 
-            countdownPage.style.display = "none";
-            giftPage.style.display = "block";
+            showGift();
 
-            setupScratchCard();
         }
 
         return;
     }
 
-    const d = Math.floor(
-        difference / (1000 * 60 * 60 * 24)
-    );
 
-    const h = Math.floor(
-        (difference / (1000 * 60 * 60)) % 24
-    );
+    /*
+        الأيام
+    */
 
-    const m = Math.floor(
-        (difference / (1000 * 60)) % 60
-    );
+    const d =
+        Math.floor(
+            difference /
+            (1000 * 60 * 60 * 24)
+        );
 
-    const s = Math.floor(
-        (difference / 1000) % 60
-    );
 
-    days.textContent = String(d).padStart(2, "0");
-    hours.textContent = String(h).padStart(2, "0");
-    minutes.textContent = String(m).padStart(2, "0");
-    seconds.textContent = String(s).padStart(2, "0");
+    /*
+        الساعات
+    */
+
+    const h =
+        Math.floor(
+            (difference /
+            (1000 * 60 * 60)) % 24
+        );
+
+
+    /*
+        الدقائق
+    */
+
+    const m =
+        Math.floor(
+            (difference /
+            (1000 * 60)) % 60
+        );
+
+
+    /*
+        الثواني
+    */
+
+    const s =
+        Math.floor(
+            (difference / 1000) % 60
+        );
+
+
+    days.textContent =
+        String(d).padStart(2, "0");
+
+    hours.textContent =
+        String(h).padStart(2, "0");
+
+    minutes.textContent =
+        String(m).padStart(2, "0");
+
+    seconds.textContent =
+        String(s).padStart(2, "0");
 }
 
 
 /* =========================================
-   Scratch Card Setup
+   SHOW GIFT
+========================================= */
+
+function showGift() {
+
+    countdownPage.style.display =
+        "none";
+
+    giftPage.style.display =
+        "block";
+
+    birthday.style.display =
+        "none";
+
+
+    setupScratchCard();
+}
+
+
+/* =========================================
+   SCRATCH CARD
 ========================================= */
 
 function setupScratchCard() {
 
+    if (scratchInitialized) {
+        return;
+    }
+
+    scratchInitialized = true;
+
+
     /*
-        نخلي الحجم الداخلي للـCanvas
-        نفس حجمه الظاهر
+        حجم الـCanvas
     */
 
     canvas.width = 260;
     canvas.height = 230;
 
-    ctx.globalCompositeOperation = "source-over";
 
-    /* طبقة الخربشة */
+    /*
+        طبقة الخربشة
+    */
 
-    ctx.fillStyle = "#e9a8bd";
-
-    ctx.fillRect(
-        0,
-        0,
-        canvas.width,
-        canvas.height
-    );
-
-
-    /* زخرفة */
-
-    ctx.fillStyle = "#fff5f8";
-
-    ctx.font = "600 18px Arial";
-
-    ctx.textAlign = "center";
-
-    ctx.fillText(
-        "Scratch me 🌷",
-        130,
-        105
-    );
-
-
-    ctx.font = "14px Arial";
-
-    ctx.fillText(
-        "something is waiting...",
-        130,
-        135
-    );
+    ctxReset();
 
 
     /*
-        منع بعض حركات المتصفح
-        أثناء لمس الكانفس
+        Touch + Mouse
     */
-
-    canvas.style.touchAction = "none";
-
-
-    /* أحداث الماوس واللمس */
 
     canvas.addEventListener(
         "pointerdown",
@@ -156,11 +217,80 @@ function setupScratchCard() {
         "pointerleave",
         stopScratch
     );
+
+
+    canvas.style.touchAction =
+        "none";
 }
 
 
 /* =========================================
-   Start Scratch
+   CANVAS CONTEXT
+========================================= */
+
+const ctx =
+    canvas.getContext("2d");
+
+
+function ctxReset() {
+
+    ctx.globalCompositeOperation =
+        "source-over";
+
+
+    /*
+        لون طبقة الخربشة
+    */
+
+    ctx.fillStyle =
+        "#e9a8bd";
+
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    /*
+        النص
+    */
+
+    ctx.textAlign =
+        "center";
+
+
+    ctx.fillStyle =
+        "#fff5f8";
+
+
+    ctx.font =
+        "600 19px Arial";
+
+
+    ctx.fillText(
+        "Scratch me 🌷",
+        130,
+        105
+    );
+
+
+    ctx.font =
+        "14px Arial";
+
+
+    ctx.fillText(
+        "something is waiting...",
+        130,
+        135
+    );
+}
+
+
+/* =========================================
+   START SCRATCH
 ========================================= */
 
 function startScratch(event) {
@@ -169,26 +299,45 @@ function startScratch(event) {
 
     scratching = true;
 
-    canvas.setPointerCapture(
-        event.pointerId
-    );
+    lastX = null;
+    lastY = null;
+
+
+    try {
+
+        canvas.setPointerCapture(
+            event.pointerId
+        );
+
+    } catch (error) {
+        // Ignore
+    }
+
 
     scratch(event);
 }
 
 
 /* =========================================
-   Scratch
+   SCRATCH
 ========================================= */
 
 function scratch(event) {
 
-    if (!scratching || scratchedEnough) {
+    if (
+        !scratching ||
+        scratchedEnough
+    ) {
         return;
     }
 
+
     event.preventDefault();
 
+
+    /*
+        مكان الـCanvas الحقيقي
+    */
 
     const rect =
         canvas.getBoundingClientRect();
@@ -196,17 +345,19 @@ function scratch(event) {
 
     /*
         تحويل مكان الإصبع
-        إلى إحداثيات الـCanvas
+        إلى إحداثيات Canvas
     */
 
     const x =
         (event.clientX - rect.left)
-        * (canvas.width / rect.width);
+        *
+        (canvas.width / rect.width);
 
 
     const y =
         (event.clientY - rect.top)
-        * (canvas.height / rect.height);
+        *
+        (canvas.height / rect.height);
 
 
     /*
@@ -217,12 +368,16 @@ function scratch(event) {
         "destination-out";
 
 
+    /*
+        دائرة الخربشة
+    */
+
     ctx.beginPath();
 
     ctx.arc(
         x,
         y,
-        28,
+        25,
         0,
         Math.PI * 2
     );
@@ -231,50 +386,60 @@ function scratch(event) {
 
 
     /*
-        نرسم خط بين المكان السابق
-        والحالي حتى لا تكون الخربشة متقطعة
+        خط بين حركة الإصبع
+        والحركة السابقة
     */
 
     if (
-        canvas.lastX !== undefined &&
-        canvas.lastY !== undefined
+        lastX !== null &&
+        lastY !== null
     ) {
 
         ctx.beginPath();
 
         ctx.moveTo(
-            canvas.lastX,
-            canvas.lastY
+            lastX,
+            lastY
         );
 
-        ctx.lineTo(x, y);
+        ctx.lineTo(
+            x,
+            y
+        );
 
-        ctx.lineWidth = 56;
+        ctx.lineWidth =
+            50;
 
-        ctx.lineCap = "round";
+        ctx.lineCap =
+            "round";
 
         ctx.stroke();
     }
 
 
-    canvas.lastX = x;
-    canvas.lastY = y;
+    lastX = x;
+    lastY = y;
 
 
-    checkScratch();
+    /*
+        التحقق من نسبة التخريش
+    */
+
+    checkScratchProgress();
 }
 
 
 /* =========================================
-   Stop Scratch
+   STOP SCRATCH
 ========================================= */
 
 function stopScratch(event) {
 
     scratching = false;
 
-    canvas.lastX = undefined;
-    canvas.lastY = undefined;
+    lastX = null;
+    lastY = null;
+
 
     try {
 
@@ -283,17 +448,20 @@ function stopScratch(event) {
         );
 
     } catch (error) {
-
-        // لا شيء
+        // Ignore
     }
 }
 
 
 /* =========================================
-   Check Scratch Percentage
+   CHECK SCRATCH
 ========================================= */
 
-function checkScratch() {
+function checkScratchProgress() {
+
+    /*
+        نأخذ بيانات الـCanvas
+    */
 
     const imageData =
         ctx.getImageData(
@@ -308,14 +476,12 @@ function checkScratch() {
         imageData.data;
 
 
-    let transparent = 0;
-
-    let total = 0;
+    let transparentPixels = 0;
+    let checkedPixels = 0;
 
 
     /*
-        نفحص كل 16 بكسل
-        لتقليل استهلاك الجوال
+        نفحص كل 4 بكسلات
     */
 
     for (
@@ -324,21 +490,30 @@ function checkScratch() {
         i += 16
     ) {
 
-        total++;
+        checkedPixels++;
 
-        if (data[i] < 30) {
-            transparent++;
+
+        /*
+            Alpha = 0
+            يعني أن المكان تم تخريشه
+        */
+
+        if (data[i] < 20) {
+
+            transparentPixels++;
         }
     }
 
 
     const percentage =
-        (transparent / total) * 100;
+        (
+            transparentPixels /
+            checkedPixels
+        ) * 100;
 
 
     /*
         إذا تخربش 40%
-        يظهر Click Here
     */
 
     if (percentage >= 40) {
@@ -351,7 +526,7 @@ function checkScratch() {
 
 
 /* =========================================
-   Reveal Click Here
+   REVEAL CLICK HERE
 ========================================= */
 
 function revealClickHere() {
@@ -359,27 +534,33 @@ function revealClickHere() {
     canvas.style.transition =
         "opacity 0.5s ease";
 
-    canvas.style.opacity = "0";
+
+    canvas.style.opacity =
+        "0";
 
 
     setTimeout(() => {
 
-        canvas.style.display = "none";
+        canvas.style.display =
+            "none";
 
-        clickHere.style.display = "flex";
+
+        clickHere.style.display =
+            "flex";
 
     }, 500);
 }
 
 
 /* =========================================
-   Click Here
+   CLICK HERE
 ========================================= */
 
 clickHere.addEventListener(
     "click",
     openBirthday
 );
+
 
 clickHere.addEventListener(
     "touchend",
@@ -393,7 +574,7 @@ clickHere.addEventListener(
 
 
 /* =========================================
-   Open Birthday
+   OPEN BIRTHDAY
 ========================================= */
 
 function openBirthday() {
@@ -405,13 +586,47 @@ function openBirthday() {
     birthdayOpened = true;
 
 
-    giftPage.style.display = "none";
+    /*
+        إخفاء الهدية
+    */
 
-    birthday.style.display = "block";
+    giftPage.style.display =
+        "none";
 
+
+    /*
+        إظهار صفحة عيد الميلاد
+    */
+
+    birthday.style.display =
+        "block";
+
+
+    /*
+        إجبار الصورة على استخدام
+        المسار الصحيح
+    */
+
+    if (birthdayImage) {
+
+        birthdayImage.src =
+            IMAGE_PATH;
+
+        birthdayImage.style.display =
+            "block";
+    }
+
+
+    /*
+        الاحتفال
+    */
 
     createCelebration();
 
+
+    /*
+        تنظيف الاحتفال بعد ثانيتين
+    */
 
     setTimeout(() => {
 
@@ -420,14 +635,18 @@ function openBirthday() {
                 "celebration"
             );
 
-        celebration.innerHTML = "";
+        if (celebration) {
+
+            celebration.innerHTML =
+                "";
+        }
 
     }, 2200);
 }
 
 
 /* =========================================
-   Celebration
+   CELEBRATION
 ========================================= */
 
 function createCelebration() {
@@ -438,6 +657,11 @@ function createCelebration() {
         );
 
 
+    if (!celebration) {
+        return;
+    }
+
+
     const symbols = [
         "🎀",
         "🌷",
@@ -445,14 +669,25 @@ function createCelebration() {
         "♡",
         "✨",
         "🎉",
-        "💗"
+        "💗",
+        "🎊"
     ];
 
 
-    for (let i = 0; i < 70; i++) {
+    /*
+        إنشاء الشرائط والقصاصات
+    */
+
+    for (
+        let i = 0;
+        i < 80;
+        i++
+    ) {
 
         const piece =
-            document.createElement("span");
+            document.createElement(
+                "span"
+            );
 
 
         piece.className =
@@ -469,30 +704,67 @@ function createCelebration() {
 
 
         piece.style.left =
-            Math.random() * 100 + "vw";
+            Math.random() *
+            100 +
+            "vw";
 
 
         piece.style.fontSize =
-            12 +
-            Math.random() * 18 +
+            (
+                12 +
+                Math.random() * 18
+            ) +
             "px";
 
 
         piece.style.animationDelay =
-            Math.random() * 0.6 +
+            (
+                Math.random() * 0.5
+            ) +
             "s";
 
 
-        celebration.appendChild(piece);
+        piece.style.animationDuration =
+            (
+                1.5 +
+                Math.random() * 1
+            ) +
+            "s";
+
+
+        celebration.appendChild(
+            piece
+        );
     }
 }
 
 
 /* =========================================
-   Start
+   IMAGE FALLBACK
+========================================= */
+
+if (birthdayImage) {
+
+    birthdayImage.addEventListener(
+        "error",
+        function() {
+
+            console.log(
+                "Image not found:",
+                IMAGE_PATH
+            );
+
+        }
+    );
+}
+
+
+/* =========================================
+   START
 ========================================= */
 
 updateCountdown();
+
 
 setInterval(
     updateCountdown,
@@ -500,18 +772,15 @@ setInterval(
 );
 
 
-/*
-    إذا دخلت الصفحة بعد موعد الميلاد
-    مباشرة يظهر صندوق الهدية
-*/
+/* =========================================
+   IF ALREADY BIRTHDAY
+========================================= */
 
-if (Date.now() >= targetDate) {
+if (
+    Date.now() >= targetDate
+) {
 
     countdownFinished = true;
 
-    countdownPage.style.display = "none";
-
-    giftPage.style.display = "block";
-
-    setupScratchCard();
+    showGift();
 }
