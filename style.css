@@ -8,7 +8,7 @@
 
 body {
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
 
     display: flex;
     justify-content: center;
@@ -17,21 +17,9 @@ body {
     font-family: "Cairo", sans-serif;
 
     background:
-        radial-gradient(
-            circle at 10% 10%,
-            #ffdce8 0%,
-            transparent 30%
-        ),
-        radial-gradient(
-            circle at 90% 90%,
-            #ffe4d5 0%,
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #fff9fb,
-            #ffedf3
-        );
+        radial-gradient(circle at 10% 10%, #ffdce8 0%, transparent 30%),
+        radial-gradient(circle at 90% 90%, #ffe4d5 0%, transparent 30%),
+        linear-gradient(135deg, #fff9fb, #ffedf3);
 
     color: #80596a;
 }
@@ -43,55 +31,42 @@ body {
 
 .flower {
     position: fixed;
-
     pointer-events: none;
     user-select: none;
 
     opacity: 0.6;
 
-    animation:
-        float 5s ease-in-out infinite;
+    animation: float 5s ease-in-out infinite;
 }
 
 .flower-1 {
     top: 5%;
     right: 5%;
-
     font-size: 70px;
-
     transform: rotate(15deg);
 }
 
 .flower-2 {
     bottom: 4%;
     left: 5%;
-
     font-size: 75px;
-
     transform: rotate(-15deg);
-
     animation-delay: 1s;
 }
 
 .flower-3 {
     top: 18%;
     left: 8%;
-
     font-size: 42px;
-
     opacity: 0.35;
-
     animation-delay: 2s;
 }
 
 .flower-4 {
     bottom: 18%;
     right: 8%;
-
     font-size: 45px;
-
     opacity: 0.35;
-
     animation-delay: 3s;
 }
 
@@ -100,15 +75,11 @@ body {
 
     0%,
     100% {
-        transform:
-            translateY(0)
-            rotate(15deg);
+        transform: translateY(0) rotate(15deg);
     }
 
     50% {
-        transform:
-            translateY(-12px)
-            rotate(18deg);
+        transform: translateY(-12px) rotate(18deg);
     }
 }
 
@@ -120,28 +91,22 @@ body {
 .card {
     position: relative;
 
-    width: min(90%, 720px);
+    width: min(92%, 720px);
+    max-height: 92vh;
 
-    max-height: 90vh;
-
-    padding: 48px 30px;
+    padding: 45px 28px;
 
     text-align: center;
 
-    background:
-        rgba(255, 255, 255, 0.68);
+    background: rgba(255, 255, 255, 0.68);
 
-    border:
-        1px solid rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.9);
 
     border-radius: 35px;
 
     box-shadow:
-        0 25px 70px
-        rgba(190, 117, 145, 0.16),
-
-        inset 0 0 35px
-        rgba(255, 255, 255, 0.5);
+        0 25px 70px rgba(190, 117, 145, 0.16),
+        inset 0 0 35px rgba(255, 255, 255, 0.5);
 
     backdrop-filter: blur(18px);
 
@@ -155,19 +120,42 @@ body {
 
     from {
         opacity: 0;
-
-        transform:
-            translateY(20px)
-            scale(0.97);
+        transform: translateY(20px) scale(0.97);
     }
 
     to {
         opacity: 1;
-
-        transform:
-            translateY(0)
-            scale(1);
+        transform: translateY(0) scale(1);
     }
+}
+
+
+/* =========================
+   Side Flowers
+========================= */
+
+.side-flower {
+    position: absolute;
+
+    font-size: 42px;
+
+    pointer-events: none;
+
+    z-index: 5;
+}
+
+.top-flower {
+    top: -18px;
+    right: 25px;
+
+    transform: rotate(12deg);
+}
+
+.bottom-flower {
+    bottom: -18px;
+    left: 25px;
+
+    transform: rotate(-12deg);
 }
 
 
@@ -187,14 +175,11 @@ body {
 
 
 h1 {
-    font-family:
-        "Playfair Display",
-        serif;
+    font-family: "Playfair Display", serif;
 
     color: #b96f89;
 
-    font-size:
-        clamp(38px, 8vw, 60px);
+    font-size: clamp(38px, 8vw, 60px);
 
     margin-bottom: 5px;
 }
@@ -212,8 +197,7 @@ h1 {
 .countdown {
     display: grid;
 
-    grid-template-columns:
-        repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
 
     gap: 14px;
 }
@@ -222,21 +206,16 @@ h1 {
 .time {
     padding: 20px 8px;
 
-    background:
-        rgba(255, 255, 255, 0.75);
+    background: rgba(255, 255, 255, 0.75);
 
-    border:
-        1px solid #f5d5df;
+    border: 1px solid #f5d5df;
 
     border-radius: 22px;
 
     box-shadow:
-        0 8px 25px
-        rgba(190, 117, 145, 0.08);
+        0 8px 25px rgba(190, 117, 145, 0.08);
 
-    transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: 0.3s ease;
 }
 
 
@@ -244,22 +223,18 @@ h1 {
     transform: translateY(-5px);
 
     box-shadow:
-        0 12px 30px
-        rgba(190, 117, 145, 0.14);
+        0 12px 30px rgba(190, 117, 145, 0.15);
 }
 
 
 .number {
     display: block;
 
-    font-family:
-        "Playfair Display",
-        serif;
+    font-family: "Playfair Display", serif;
 
     color: #c77994;
 
-    font-size:
-        clamp(30px, 6vw, 48px);
+    font-size: clamp(30px, 6vw, 48px);
 
     font-weight: 600;
 }
@@ -288,31 +263,256 @@ h1 {
 
 
 /* =========================
-   Side Flowers
+   Gift Page
 ========================= */
 
-.side-flower {
+#giftPage {
+    display: none;
+
+    animation: fadeIn 1s ease;
+}
+
+
+.gift-title {
+    font-family: "Playfair Display", serif;
+
+    color: #bd718b;
+
+    font-size: clamp(25px, 5vw, 36px);
+
+    margin-bottom: 8px;
+}
+
+
+.gift-subtitle {
+    color: #a47b89;
+
+    font-size: 14px;
+
+    margin-bottom: 28px;
+}
+
+
+/* =========================
+   Gift Wrapper
+========================= */
+
+.gift-wrapper {
+    position: relative;
+
+    width: 260px;
+    height: 230px;
+
+    margin: 20px auto;
+
+    user-select: none;
+}
+
+
+/* =========================
+   Gift Box
+========================= */
+
+.gift-box {
     position: absolute;
 
-    font-size: 42px;
+    width: 190px;
+    height: 150px;
 
-    pointer-events: none;
+    left: 50%;
+    bottom: 15px;
+
+    transform: translateX(-50%);
 }
 
 
-.top-flower {
-    top: -18px;
-    right: 25px;
+/* Gift Body */
 
-    transform: rotate(12deg);
+.gift-body {
+    position: absolute;
+
+    width: 190px;
+    height: 130px;
+
+    bottom: 0;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4b6c8,
+            #e99bb4
+        );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 15px 25px
+        rgba(190, 100, 130, 0.2);
 }
 
 
-.bottom-flower {
-    bottom: -18px;
-    left: 25px;
+/* Gift Lid */
 
-    transform: rotate(-12deg);
+.gift-lid {
+    position: absolute;
+
+    z-index: 3;
+
+    width: 210px;
+    height: 38px;
+
+    top: -10px;
+    left: -10px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8c7d6,
+            #eaa0b8
+        );
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 7px 12px
+        rgba(190, 100, 130, 0.18);
+}
+
+
+/* Vertical Ribbon */
+
+.gift-ribbon-vertical {
+    position: absolute;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    width: 34px;
+    height: 100%;
+
+    background: #fff0c9;
+
+    opacity: 0.95;
+}
+
+
+/* Horizontal Ribbon */
+
+.gift-ribbon-horizontal {
+    position: absolute;
+
+    top: 35px;
+
+    width: 100%;
+    height: 30px;
+
+    background: #fff0c9;
+
+    opacity: 0.95;
+}
+
+
+/* Bow */
+
+.gift-bow {
+    position: absolute;
+
+    z-index: 5;
+
+    top: -48px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    font-size: 65px;
+
+    filter:
+        drop-shadow(
+            0 5px 5px
+            rgba(180, 100, 125, 0.15)
+        );
+}
+
+
+/* =========================
+   Scratch Canvas
+========================= */
+
+#scratchCanvas {
+    position: absolute;
+
+    z-index: 10;
+
+    top: 0;
+    left: 0;
+
+    width: 260px;
+    height: 230px;
+
+    cursor: grab;
+
+    touch-action: none;
+
+    border-radius: 18px;
+}
+
+
+#scratchCanvas:active {
+    cursor: grabbing;
+}
+
+
+/* =========================
+   Click Here
+========================= */
+
+.click-here {
+    display: none;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    margin-top: 10px;
+
+    color: #c77994;
+
+    font-family: "Playfair Display", serif;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    animation:
+        clickPulse 1.5s ease-in-out infinite;
+}
+
+
+.click-here small {
+    font-family: "Cairo", sans-serif;
+
+    font-size: 13px;
+
+    color: #d59aad;
+}
+
+
+@keyframes clickPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
 }
 
 
@@ -322,6 +522,8 @@ h1 {
 
 #birthday {
     display: none;
+
+    position: relative;
 
     animation:
         birthdayAppear 1.5s ease;
@@ -333,15 +535,13 @@ h1 {
     from {
         opacity: 0;
 
-        transform:
-            scale(0.85);
+        transform: scale(0.85);
     }
 
     to {
         opacity: 1;
 
-        transform:
-            scale(1);
+        transform: scale(1);
     }
 }
 
@@ -352,9 +552,7 @@ h1 {
     margin-bottom: 12px;
 
     animation:
-        cake 1.5s
-        ease-in-out
-        infinite;
+        cake 1.5s ease-in-out infinite;
 }
 
 
@@ -362,26 +560,21 @@ h1 {
 
     0%,
     100% {
-        transform:
-            translateY(0);
+        transform: translateY(0);
     }
 
     50% {
-        transform:
-            translateY(-7px);
+        transform: translateY(-7px);
     }
 }
 
 
 .birthday-title {
-    font-family:
-        "Playfair Display",
-        serif;
+    font-family: "Playfair Display", serif;
 
     color: #c36f8d;
 
-    font-size:
-        clamp(40px, 9vw, 65px);
+    font-size: clamp(40px, 9vw, 65px);
 
     margin-bottom: 5px;
 }
@@ -394,7 +587,43 @@ h1 {
 
     font-weight: 600;
 
-    margin-bottom: 25px;
+    margin-bottom: 22px;
+}
+
+
+/* =========================
+   Birthday Image
+========================= */
+
+.birthday-image-wrapper {
+    width: 220px;
+    height: 220px;
+
+    margin: 0 auto 25px;
+
+    padding: 7px;
+
+    background: rgba(255, 255, 255, 0.8);
+
+    border: 1px solid #f4d2dd;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 12px 30px
+        rgba(190, 117, 145, 0.15);
+}
+
+
+.birthday-image-wrapper img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    border-radius: 50%;
 }
 
 
@@ -431,44 +660,67 @@ h1 {
 
 
 /* =========================
-   Floating Hearts
+   Celebration
 ========================= */
 
-.heart {
+.celebration {
     position: fixed;
 
-    color: #e5a1b5;
-
-    font-size: 20px;
+    inset: 0;
 
     pointer-events: none;
 
-    animation:
-        heartFloat
-        5s linear infinite;
-
-    opacity: 0;
+    z-index: 100;
 }
 
 
-@keyframes heartFloat {
+.confetti {
+    position: absolute;
+
+    width: 10px;
+    height: 18px;
+
+    top: -30px;
+
+    animation:
+        confettiFall 2s ease-out forwards;
+}
+
+
+@keyframes confettiFall {
 
     0% {
         transform:
-            translateY(20px);
+            translateY(0)
+            rotate(0deg);
 
-        opacity: 0;
-    }
-
-    20% {
-        opacity: 0.7;
+        opacity: 1;
     }
 
     100% {
         transform:
-            translateY(-100vh);
+            translateY(110vh)
+            rotate(720deg);
 
         opacity: 0;
+    }
+}
+
+
+/* =========================
+   Fade
+========================= */
+
+@keyframes fadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 
@@ -480,39 +732,50 @@ h1 {
 @media (max-width: 600px) {
 
     body {
-        padding: 15px;
+        padding: 12px;
     }
 
 
     .card {
         width: 95%;
 
-        max-height: 92vh;
+        max-height: 94vh;
 
-        padding:
-            40px 17px;
+        padding: 38px 17px;
 
         border-radius: 28px;
     }
 
 
     .countdown {
-        grid-template-columns:
-            repeat(2, 1fr);
+        grid-template-columns: repeat(2, 1fr);
 
         gap: 11px;
     }
 
 
     .time {
-        padding:
-            17px 8px;
+        padding: 17px 8px;
     }
 
 
     .flower-1,
     .flower-2 {
         font-size: 50px;
+    }
+
+
+    .gift-wrapper {
+        transform: scale(0.9);
+
+        margin-top: 5px;
+        margin-bottom: 0;
+    }
+
+
+    .birthday-image-wrapper {
+        width: 180px;
+        height: 180px;
     }
 
 
@@ -528,4 +791,4 @@ h1 {
     .birthday-name {
         font-size: 23px;
     }
-      }
+        }
