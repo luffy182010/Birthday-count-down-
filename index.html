@@ -11,14 +11,20 @@
 
 <body>
 
-    <!-- Background Flowers -->
+    <!-- =========================
+         Background Flowers
+    ========================== -->
+
     <div class="flower flower-1">🌷</div>
     <div class="flower flower-2">🌷</div>
     <div class="flower flower-3">🌸</div>
     <div class="flower flower-4">🌸</div>
 
 
-    <!-- Main Card -->
+    <!-- =========================
+         Main Card
+    ========================== -->
+
     <main class="card">
 
         <div class="side-flower top-flower">
@@ -30,7 +36,10 @@
         </div>
 
 
-        <!-- Countdown Page -->
+        <!-- =========================
+             Countdown
+        ========================== -->
+
         <section id="countdownPage">
 
             <div class="tiny">
@@ -76,69 +85,172 @@
         </section>
 
 
-        <!-- Birthday Page -->
+        <!-- =========================
+             Gift / Scratch Page
+        ========================== -->
+
+        <section id="giftPage">
+
+            <div class="gift-title">
+                Something special is waiting for you... 🎁
+            </div>
+
+            <p class="gift-subtitle">
+                Scratch the gift to reveal your surprise
+            </p>
+
+
+            <!-- Gift -->
+
+            <div class="gift-wrapper">
+
+                <div class="gift-box">
+
+                    <div class="gift-lid"></div>
+
+                    <div class="gift-body">
+
+                        <div class="gift-ribbon-vertical"></div>
+
+                        <div class="gift-ribbon-horizontal"></div>
+
+                    </div>
+
+                    <div class="gift-bow">
+                        🎀
+                    </div>
+
+                </div>
+
+
+                <!-- Scratch Layer -->
+
+                <canvas
+                    id="scratchCanvas">
+                </canvas>
+
+            </div>
+
+
+            <!-- Hidden until scratched -->
+
+            <div
+                id="clickHere"
+                class="click-here">
+
+                <span>
+                    click here
+                </span>
+
+                <small>
+                    ♡
+                </small>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             Birthday Page
+        ========================== -->
+
         <section id="birthday">
 
-            <div class="cake">
-                🎂
-            </div>
+            <!-- Celebration -->
 
-            <div class="birthday-title">
-                Happy Birthday
-            </div>
-
-            <div class="birthday-name">
-                Kayuki 🌷
+            <div
+                id="celebration"
+                class="celebration">
             </div>
 
 
-            <div class="message">
+            <!-- Birthday Content -->
 
-                Happy birthday to one of the most
-                special people in my life. 🤍
+            <div class="birthday-content">
 
-                <br><br>
+                <div class="cake">
+                    🎂
+                </div>
 
-                You somehow always manage to make me smile,
-                even on days when I don't really feel like smiling.
-                There's something about you that makes even the
-                smallest moments feel a little more special
-                just because you're there.
 
-                <br><br>
+                <div class="birthday-title">
+                    Happy Birthday
+                </div>
 
-                I probably don't say it enough,
-                but I genuinely appreciate you more than you know.
-                The way you care, the way you notice the little things,
-                and the happiness you bring into my life are things
-                I never want to take for granted.
 
-                <br><br>
+                <div class="birthday-name">
+                    Kayuki 🌷
+                </div>
 
-                I hope this new year of your life brings you
-                all the little things that make your heart happy,
-                beautiful memories, peaceful days,
-                and people who appreciate you for exactly who you are.
 
-                <br><br>
+                <!--
+                    Put Kayuki's image here
+                    Example:
+                    images/kayuki.jpg
+                -->
 
-                You deserve to feel loved, appreciated,
-                and celebrated — not just today,
-                but every day.
+                <div class="birthday-image-wrapper">
 
-                <br><br>
+                    <img
+                        id="birthdayImage"
+                        src="kayuki.jpg"
+                        alt="Kayuki">
 
-                Here's to another year of memories,
-                dreams, random little moments,
-                and you simply being you.
+                </div>
 
-                <br><br>
 
-                I'm always rooting for you. 🌷
+                <!-- Birthday Message -->
 
-                <br>
+                <div class="message">
 
-                Happy birthday, Kayuki. 🤍
+                    Happy birthday to one of the most
+                    special people in my life. 🤍
+
+                    <br><br>
+
+                    You somehow always manage to make me smile,
+                    even on days when I don't really feel like smiling.
+                    There's something about you that makes even the
+                    smallest moments feel a little more special
+                    just because you're there.
+
+                    <br><br>
+
+                    I probably don't say it enough,
+                    but I genuinely appreciate you more than you know.
+                    The way you care, the way you notice the little things,
+                    and the happiness you bring into my life are things
+                    I never want to take for granted.
+
+                    <br><br>
+
+                    I hope this new year of your life brings you
+                    all the little things that make your heart happy,
+                    beautiful memories, peaceful days,
+                    and people who appreciate you for exactly who you are.
+
+                    <br><br>
+
+                    You deserve to feel loved, appreciated,
+                    and celebrated — not just today,
+                    but every day.
+
+                    <br><br>
+
+                    Here's to another year of memories,
+                    dreams, random little moments,
+                    and you simply being you.
+
+                    <br><br>
+
+                    I'm always rooting for you. 🌷
+
+                    <br>
+
+                    Happy birthday, Kayuki. 🤍
+
+                </div>
 
             </div>
 
@@ -150,4 +262,4 @@
     <script src="script.js"></script>
 
 </body>
-  </html>
+</html>
